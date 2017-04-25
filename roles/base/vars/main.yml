@@ -1,0 +1,13 @@
+base_path: "{{ epics_path }}/R{{ epics_version }}"
+packages:
+  - git
+  - gcc
+  - gcc-c++
+  - make
+  - perl
+  - perl-devel
+  - perl-Pod-Checker
+  - vim
+  - wget
+  - readline
+  - readline-devel

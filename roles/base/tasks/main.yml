@@ -1,0 +1,40 @@
+- name: Install packages from yum
+  yum: name={{ item }} state=latest
+  with_items: "{{ packages }}"
+  become: true
+- name: Make epics dir structure
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    group: vagrant
+    owner: vagrant
+  with_items:
+    - "{{ epics_path }}"
+    - "{{ epics_path }}/app"
+    - "{{ epics_home }}"
+    - "{{ epics_home }}/modules/soft"
+    - "{{ epics_home }}/modules/instruments"
+  become: true
+- name: Chack base exists
+  stat: path={{ epics_base }}
+  register: base_exists
+- block:
+  - name: Download epics base and extnsionTop srcs
+    unarchive:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      remote_src: True
+    with_items:
+      - { src: '{{ epics_base_url }}', dest: '{{ epics_home }}'}
+      - { src: 'https://www.aps.anl.gov/epics/download/extensions/extensionsTop_20120904.tar.gz' , dest: '{{ epics_home }}' }
+  - name: Move base
+    command: mv "{{ epics_home }}/base-3.{{ epics_version }}" "{{ epics_base }}"
+  when: not base_exists.stat.exists
+- name: Make epics base
+  make:
+    chdir: "{{ item }}"
+  environment:
+    EPICS_HOST_ARCH: "{{ epics_host_arch }}"
+  with_items:
+    - "{{ epics_base }}"

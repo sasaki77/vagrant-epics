@@ -1,0 +1,21 @@
+- name: Chack extension exists
+  stat: path={{ epics_home }}/extensions/src/{{ dir }}
+  register: extension_exists
+- name: Download extension
+  unarchive:
+    src: "{{ url }}"
+    dest: "{{ epics_home }}/extensions/src"
+    remote_src: True
+  when: not extension_exists.stat.exists
+- name: Edit extensions's configure/RELEASE
+  lineinfile:
+    dest: '{{ epics_home }}/extensions/src/{{ dir }}/configure/RELEASE'
+    regexp: '^(.*)EPICS_BASE(.*)=(.*)$'
+    line: 'EPICS_BASE={{ epics_base }}'
+  when: release
+- name: Make epics extensions
+  make:
+    chdir: "{{ epics_home }}/extensions/src/{{ dir }}"
+  environment:
+    EPICS_HOST_ARCH: "{{ epics_host_arch }}"
+    EPICS_BASE: "{{ epics_base }}"

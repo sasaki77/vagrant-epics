@@ -1,0 +1,36 @@
+- name: install pexpect
+  pip:
+    name: pexpect
+  become: true
+- name: Make module dir
+  file:
+    path: "{{ epics_home }}/modules/{{ type }}/{{ name }}/{{ ver }}"
+    state: directory
+    mode: 0755
+    group: vagrant
+    owner: vagrant
+- name: MakeBaseApp
+  expect:
+    command: "{{ epics_base }}/bin/{{ epics_host_arch }}/makeBaseApp.pl -t support"
+    chdir: "{{ epics_home }}/modules/{{ type }}/{{ name }}/{{ ver }}"
+    responses:
+      Application names?: ""
+- name: git clone
+  git:
+    repo: '{{ url }}'
+    dest: "{{ epics_home }}/modules/{{ type }}/{{ name }}/{{ ver }}/StreamDevice"
+    clone: yes
+    version: stream_{{ ver }}
+    force: yes
+- name: rm GNUmakefile
+  file: 
+    state: absent
+    path: "{{ epics_home }}/modules/{{ type }}/{{ name }}/{{ ver }}/StreamDevice/GNUmakefile"
+- include: ../supports/module_release_sncseq.yml
+- include: ../supports/module_release_asyn.yml
+- include: ../supports/module_make.yml
+- name: Make epics module
+  make:
+    chdir: "{{ epics_home }}/modules/{{ type }}/{{ name }}/{{ ver }}/StreamDevice"
+  environment:
+    EPICS_HOST_ARCH: "{{ epics_host_arch }}"

@@ -1,0 +1,3 @@
+- include: ../supports/module_common.yml
+- include: ../supports/module_release_base.yml
+- include: ../supports/module_make.yml

@@ -1,0 +1,9 @@
+name: stream
+type: soft
+ver: "2_7_7"
+url: https://github.com/paulscherrerinstitute/StreamDevice 
+dir: "{{ ver }}"
+seq_ver: 2.2.4
+asyn_ver: 4-31
+sncseq_path: "{{ epics_home }}/modules/{{ type }}/seq/{{ seq_ver }}"
+asyn_path: "{{ epics_home }}/modules/{{ type }}/asyn/{{ asyn_ver }}"

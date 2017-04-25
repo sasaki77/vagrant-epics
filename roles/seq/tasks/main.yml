@@ -1,0 +1,9 @@
+- name: Install epel-relase from yum
+  yum: name=epel-release state=latest
+  become: true
+- name: Install re2c from yum
+  yum: name=re2c state=latest
+  become: true
+- include: ../supports/module_common.yml
+- include: ../supports/module_release_base.yml
+- include: ../supports/module_make.yml

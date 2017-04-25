@@ -1,0 +1,5 @@
+- name: Edit module's sncseq path in configure/RELEASE
+  lineinfile:
+    dest: '{{ epics_home }}/modules/{{ type }}/{{ name }}/{{ ver }}/configure/RELEASE'
+    regexp: '^(.*)SNCSEQ(.*)=(.*)$'
+    line: 'SNCSEQ={{ sncseq_path }}'
