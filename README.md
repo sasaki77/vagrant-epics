@@ -1,1 +1,1 @@
-"# vagrant-epics" 
+# vagrant-epics
