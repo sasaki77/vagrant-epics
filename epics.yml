@@ -1,14 +1,16 @@
 ---
 - hosts: all
   remote_user: vagrant
-  vars_files:
-    - epics_vars.yml
+  become: true
+  vars:
+    epics_base_owner: "vagrant"
+    epics_base_group: "vagrant"
   roles:
-    - role: base
-    - role: gateway
-    - role: msi
-    - role: caSnooper
-    - role: seq
-    - role: asyn 
-    - role: stream
-    - role: autosave
+    - role: ansible-role-epics-base
+    - role: ansible-role-epics-gateway
+    - role: ansible-role-epics-msi
+    - role: ansible-role-epics-caSnooper
+    - role: ansible-role-epics-autosave
+    - role: ansible-role-epics-seq
+    - role: ansible-role-epics-asyn
+    - role: ansible-role-epics-stream

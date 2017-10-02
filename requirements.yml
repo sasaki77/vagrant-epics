@@ -1,0 +1,9 @@
+---
+- src: http://github.com/sasaki77/ansible-role-epics-base
+- src: http://github.com/sasaki77/ansible-role-epics-gateway
+- src: http://github.com/sasaki77/ansible-role-epics-msi
+- src: http://github.com/sasaki77/ansible-role-epics-caSnooper
+- src: http://github.com/sasaki77/ansible-role-epics-autosave
+- src: http://github.com/sasaki77/ansible-role-epics-seq
+- src: http://github.com/sasaki77/ansible-role-epics-asyn
+- src: http://github.com/sasaki77/ansible-role-epics-stream

@@ -1,4 +1,0 @@
-ver: "2_1_2_3"
-url: https://www.aps.anl.gov/epics/download/extensions/caSnooper{{ ver }}.tar.gz
-dir: caSnooper{{ ver }}
-release: false

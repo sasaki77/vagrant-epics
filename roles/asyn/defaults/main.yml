@@ -1,7 +1,0 @@
-name: asyn
-type: soft
-ver: 4-31
-url: https://www.aps.anl.gov/epics/download/modules/asyn{{ ver }}.tar.gz
-dir: asyn{{ ver }}
-seq_ver: 2.2.4
-sncseq_path: "{{ epics_home }}/modules/{{ type }}/seq/{{ seq_ver }}"

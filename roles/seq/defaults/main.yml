@@ -1,5 +1,0 @@
-name: seq
-type: soft
-ver: 2.2.4
-url: http://www-csr.bessy.de/control/SoftDist/sequencer/releases/seq-{{ ver }}.tar.gz
-dir: seq-{{ ver }}

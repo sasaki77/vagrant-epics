@@ -1,5 +1,0 @@
-- name: Edit module's asyn path in configure/RELEASE
-  lineinfile:
-    dest: '{{ epics_home }}/modules/{{ type }}/{{ name }}/{{ ver }}/configure/RELEASE'
-    regexp: '^(.*)ASYN(.*)=(.*)$'
-    line: 'ASYN={{ asyn_path }}'

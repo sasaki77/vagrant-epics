@@ -1,6 +1,0 @@
-epics_version: 14.12.5
-epics_host_arch: linux-x86_64
-epics_base_url: https://www.aps.anl.gov/epics/download/base/baseR3.{{ epics_version }}.tar.gz
-epics_path: /opt/epics
-epics_home: "{{ epics_path }}/R{{ epics_version }}"
-epics_base: "{{ epics_home }}/base"
